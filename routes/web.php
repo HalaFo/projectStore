@@ -31,5 +31,15 @@ Route::post('categories/store', [CategoryController::class, 'store']);
 Route::get('categories/edit/{id}', [CategoryController::class, 'edit']);
 Route::get('categories/delete/{id}', [CategoryController::class, 'destroy']);
 Route::patch('categories/update/{id}', [CategoryController::class, 'update']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
+    // Add other admin routes here
+});
+Route::get('/', 'HomeController@index')->name('client.home');
 // front page
 Route::get('/', [frontController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

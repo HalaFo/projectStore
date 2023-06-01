@@ -76,3 +76,12 @@ class CreateOrdersTable extends Migration
         Schema::dropIfExists('orders');
     }
 }
+class CategoryController extends Controller
+{
+    public function show($id)
+    {
+        $category = Category::findOrFail($id);
+        $products = $category->products()->paginate(10);
+        return view('categories.show', compact('category', 'products'));
+    }
+}

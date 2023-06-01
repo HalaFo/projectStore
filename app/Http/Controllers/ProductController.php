@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __Construct(){
+        $this->middleware('auth');
+    }
     public function index()
     {
        $product = Product::all();
@@ -15,6 +18,15 @@ class ProductController extends Controller
     {
         return view('admin.products.create').compact('products');
     }
+
+    class ProductController extends Controller
+{
+    public function index()
+    {
+        $products = Product::with('category')->paginate(10);
+        return view('products.index', compact('products'));
+    }
+}
 
     public function edit()
     {
@@ -77,5 +89,5 @@ class ProductController extends Controller
     Auth::routes();
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-}
+};
 ?>

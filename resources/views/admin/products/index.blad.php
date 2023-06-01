@@ -1,5 +1,10 @@
 @extends('layouts.admins')
 @section('content')
+@foreach ($products as $product)
+<!-- Display product details -->
+@endforeach
+
+{{ $products->links() }}
 <div class="py-5">
     <table class="table">
         <thead>
@@ -26,6 +31,9 @@
                 </td>
             </tr>
             @endforeach
+
+
+
 
         </tbody>
     </table>
